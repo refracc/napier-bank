@@ -6,8 +6,5 @@
         xmlns:local="clr-namespace:Napier_Bank_Message_Filtering_Service"
         mc:Ignorable="d"
         Title="MainWindow" Height="622" Width="352">
-    <Grid>
-        <TextBox x:Name="txtTest" HorizontalAlignment="Left" Margin="10,10,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="327" Height="307"/>
-
-    </Grid>
+    <Grid/>
 </Window>

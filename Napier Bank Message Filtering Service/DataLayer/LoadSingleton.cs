@@ -6,9 +6,7 @@ using System.Text;
 namespace DataLayer
 {
     /// <summary>
-    /// This is the class responsible for loading all the data from the files to create new objects.
-    /// This was achieved through using this class as a singleton, and then referencing a factory which creates all the objects.
-    /// (See PeopleFactory for more details).
+    /// This is the class responsible for loading all the data from relevant files to populate an abbreviations dictionary.
     /// 
     /// This class makes use of the sealed modifier to prevent all classes from inheriting from it.
     /// </summary>
@@ -34,6 +32,11 @@ namespace DataLayer
         /// </summary>
         public static LoadSingleton Instance => loadSingleton.Value;
 
+        /// <summary>
+        /// This method is to retrieve all the abbreviations one may use when messaging another user of the system.
+        /// This also respects the commas which are used in translation of messages.
+        /// </summary>
+        /// <returns>A dictionary containing all the possible abbreviations from a csv file.</returns>
         public Dictionary<string, string> GetAbbreviations()
         {
             Dictionary<string, string> words = new Dictionary<string, string>();
