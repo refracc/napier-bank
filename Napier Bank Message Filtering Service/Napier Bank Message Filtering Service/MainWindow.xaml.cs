@@ -24,19 +24,6 @@ namespace Napier_Bank_Message_Filtering_Service
         public MainWindow()
         {
             InitializeComponent();
-            Random();
-        }
-
-        private void Random()
-        {
-            try
-            {
-                SMS sms = new SMS("1111111111", "jdjdjdjdjjdjdjdjdjddjdjdjdjdjjdjdjdjdjdd SSDD jdjdjdjdjjdwiuefhwiuefhwiuehfiuwefiuwehfiuwehf");
-                MessageBox.Show(sms.Body, "EEEEEEERRRRRRRRROOOOOOORRRRRRRRRRRRRRRR", MessageBoxButton.OK, MessageBoxImage.Hand, MessageBoxResult.OK, MessageBoxOptions.None);
-            } catch (Exception e)
-            {
-                MessageBox.Show(e.Message, "EEEEEEERRRRRRRRROOOOOOORRRRRRRRRRRRRRRR", MessageBoxButton.OK, MessageBoxImage.Hand, MessageBoxResult.OK, MessageBoxOptions.None);
-            }
         }
     }
 }

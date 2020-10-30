@@ -5,6 +5,5 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Napier_Bank_Message_Filtering_Service"
         mc:Ignorable="d"
-        Title="MainWindow" Height="622" Width="352">
-    <Grid/>
+        Title="MainWindow" Height="428" Width="788">
 </Window>
