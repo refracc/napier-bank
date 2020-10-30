@@ -1,11 +1,10 @@
 ﻿using DataLayer;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Dynamic;
 
 namespace BusinessLayer
 {
+    [Serializable]
     public class SMS : Message
     {
         private static readonly LoadSingleton _ls = LoadSingleton.Instance;
@@ -34,7 +33,7 @@ namespace BusinessLayer
             CheckTextValid(body);
         }
 
-        private void CheckTextValid(string text) 
+        private void CheckTextValid(string text)
         {
             if (text.Length <= 140)
                 Text = ConvertAbbreviations(text, _words);

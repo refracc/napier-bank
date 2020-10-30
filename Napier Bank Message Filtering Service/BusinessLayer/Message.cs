@@ -6,6 +6,7 @@ using System.Text.RegularExpressions;
 
 namespace BusinessLayer
 {
+    [Serializable]
     public abstract class Message
     {
         private string _header;

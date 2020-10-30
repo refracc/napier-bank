@@ -5,6 +5,7 @@ using System.Text;
 
 namespace BusinessLayer
 {
+    [Serializable]
     public class Tweet : Message
     {
         private Tweet() {}
@@ -18,13 +19,13 @@ namespace BusinessLayer
             }
         }
 
-        private bool Validate(string sender, string msg) => (sender.StartsWith("@")) && (msg.Length <= 140);
+        public bool Validate(string sender, string msg) => (sender.StartsWith("@")) && (msg.Length <= 140);
 
-        protected List<string> ExtractMentions(string msg)
+        public List<string> ExtractMentions(string msg)
         {
             string[] data = msg.Split(' ');
 
-            return data.Where(s => s.StartsWith("#")).ToList();
+            return data.Where(s => s.StartsWith("@")).ToList();
         }
     }
 }

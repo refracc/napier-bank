@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Napier Bank Message Filtering Service", "Napier Bank Message Filtering Service\Napier Bank Message Filtering Service.csproj", "{7D7A7897-2117-43BB-A8DE-19D6149EC84C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Napier Bank Message Filtering Service", "Napier Bank Message Filtering Service\Napier Bank Message Filtering Service.csproj", "{7D7A7897-2117-43BB-A8DE-19D6149EC84C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLayer", "DataLayer\DataLayer.csproj", "{70FDAD39-EAB7-42D4-B691-0A39710975E5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataLayer", "DataLayer\DataLayer.csproj", "{70FDAD39-EAB7-42D4-B691-0A39710975E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLayer", "BusinessLayer\BusinessLayer.csproj", "{4C09BBFF-D173-4D4F-8300-EEA4AEB342CC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLayer", "BusinessLayer\BusinessLayer.csproj", "{4C09BBFF-D173-4D4F-8300-EEA4AEB342CC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

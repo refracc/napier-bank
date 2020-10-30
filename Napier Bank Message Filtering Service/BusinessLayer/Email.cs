@@ -5,6 +5,7 @@ using System.Text.RegularExpressions;
 
 namespace BusinessLayer
 {
+    [Serializable]
     public class Email : Message
     {
         private Email() { }
