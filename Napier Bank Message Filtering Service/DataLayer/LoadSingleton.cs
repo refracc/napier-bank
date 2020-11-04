@@ -27,13 +27,13 @@ namespace DataLayer
         /// There's also the use of a 'static' and 'readonly' modifier. They're there so you can't modify it and so you can call a pre-made instance of this class
         /// without creating a new instance of this class.
         /// </summary>
-        private static readonly Lazy<LoadSingleton> loadSingleton = new Lazy<LoadSingleton>(() => new LoadSingleton());
+        private static readonly Lazy<LoadSingleton> _loadSingleton = new Lazy<LoadSingleton>(() => new LoadSingleton());
 
         /// <summary>
         /// This is the instance which is called to refer to this class and makes use of the Lazy<T>'s created instance.
         /// This makes use of the static modifier so you can call it from outwith the class.
         /// </summary>
-        public static LoadSingleton Instance => loadSingleton.Value;
+        public static LoadSingleton Instance => _loadSingleton.Value;
 
         /// <summary>
         /// This method is to retrieve all the abbreviations one may use when messaging another user of the system.
@@ -64,26 +64,6 @@ namespace DataLayer
             }
 
             return words;
-        }
-
-        /// <summary>
-        /// Write the contents of a file to a new JSON file.
-        /// </summary>
-        /// <param name="data">The data to pass in to the file writer</param>
-        /// <param name="header">The actual name of the file</param>
-        /// <returns>True: If the file can be created. False: If it encounters some sort of exception.</returns>
-        public bool WriteData(string data, string header)
-        {
-            try
-            {
-                string json = JsonConvert.SerializeObject(data, Formatting.Indented);
-                File.WriteAllText($"../../{header}.json", json);
-                return true;
-            }
-            catch (Exception e)
-            {
-                return false;
-            }
         }
 
     }

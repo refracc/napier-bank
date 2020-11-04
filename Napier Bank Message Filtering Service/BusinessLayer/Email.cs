@@ -10,13 +10,18 @@ namespace BusinessLayer
     {
         private Email() { }
 
-        public Email(string sender, string subject, string text)
+        public Email(string header, string sender, string subject, string text)
         {
             if (Validate(sender, subject, text))
             {
+                Header = header;
                 Sender = sender;
                 Subject = subject;
-                Text = text;
+                Text = QuarantineURL(text);
+            }
+            else
+            {
+                throw new ArgumentException("The data supplied for the email is insufficient.");
             }
         }
 

@@ -11,24 +11,11 @@ namespace BusinessLayer
 
         private readonly Dictionary<string, string> _words = _ls.GetAbbreviations();
 
-        private string _number;
-
-        public string Number
-        {
-            get => _number;
-            set
-            {
-                if (value.StartsWith("+") && value.Length > 6)
-                    _number = value;
-                else throw new ArgumentException("This is an invalid phone number!");
-            }
-        }
-
         private SMS() { }
         public SMS(string number, string header, string body)
         {
             Header = header;
-            Number = number;
+            Sender = number;
 
             CheckTextValid(body);
         }

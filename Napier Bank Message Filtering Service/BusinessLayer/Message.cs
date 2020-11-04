@@ -6,12 +6,10 @@ using System.Text.RegularExpressions;
 
 namespace BusinessLayer
 {
-    [Serializable]
     public abstract class Message
     {
         private string _header;
         private string _subject;
-        private string _text;
         private string _sender;
 
         public string Header
@@ -25,7 +23,7 @@ namespace BusinessLayer
                 }
                 else
                 {
-                    throw new ArgumentException("The value specified is not acceptable! (S, E or T followed by 0-9)");
+                    throw new ArgumentException("The value specified is not acceptable! (S, E or T followed by 0-9 9 times)");
                 }
             }
         }
@@ -41,13 +39,26 @@ namespace BusinessLayer
             }
         }
 
-        public string Text
-        {
-            get => _text;
-            set => _text = value;
-        }
+        public string Text { get; set; }
 
-        public string Sender { get; protected set; }
+        public string Sender
+        {
+            get => _sender;
+            set
+            {
+                if (Header.StartsWith("S") && (value.StartsWith("+") && value.Length > 6))
+                {
+                    _sender = value;
+                } else if (Header.StartsWith("E") || Header.StartsWith("T"))
+                {
+                    _sender = value;
+                }
+                else
+                {
+                    throw new ArgumentException("This is an invalid input!");
+                }
+            }
+        }
 
         protected string ConvertAbbreviations(string msg, Dictionary<string, string> words)
         {
@@ -66,37 +77,44 @@ namespace BusinessLayer
             return sb.ToString().Trim();
         }
 
-        protected List<string> ExtractAbbreviations(string msg, Dictionary<string, string> words)
-        {
-            string[] msgs = msg.Split(' ');
-
-            return msgs.Where(words.ContainsKey).ToList();
-        }
-
         protected string QuarantineURL(string msg)
         {
             Regex regex = new Regex(@"(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&\/\/=]*)");
 
             foreach (string s in regex.Matches(msg))
             {
-                msg = msg.Replace(s, "<URL Quarantined>");
+                msg = regex.Replace(s, "<URL Quarantined>");
             }
 
             return msg;
         }
 
-        protected List<string> GetHashTags(string msg)
+        public List<string> QuarantinedURLs(string msg)
         {
-            string[] msgs = msg.Split(' ');
+            //Regex regex = new Regex(@"(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&\/\/=]*)");
+            //MatchCollection match = regex.Matches(msg);
 
-            List<string> hashes = new List<string>();
+            //List<object> urls = new List<object>();
 
-            foreach (var s in msgs)
+            //foreach (Match m in match)
+            //{
+            //    urls.Add(m.Value);
+            //}
+
+            //return urls;
+
+            List<string> urls = new List<string>();
+            string[] data = msg.Split(' ');
+
+            foreach (string s in data)
             {
-                if (s.StartsWith("#")) hashes.Add(s);
+                if (s.StartsWith("http://") || s.StartsWith("https://"))
+                {
+                    urls.Add(s);
+                }
             }
 
-            return hashes;
+            return urls;
         }
     }
 }

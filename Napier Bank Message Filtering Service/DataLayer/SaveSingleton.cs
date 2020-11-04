@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using Newtonsoft.Json;
 
 namespace DataLayer
 {
@@ -31,21 +33,22 @@ namespace DataLayer
         public static SaveSingleton Instance => saveSingleton.Value;
 
         /// <summary>
-        /// Given the type specified, this method will all objects of that type to a JSON file.
+        /// Write the contents of a file to a new JSON file.
         /// </summary>
-        /// <param name="type">A string which is used to specify what objects to save.</param>
-        public void SaveType(string type)
+        /// <param name="o">The data to pass in to the file writer</param>
+        /// <param name="header">The actual name of the file</param>
+        /// <returns>True: If the file can be created. False: If it encounters some sort of exception.</returns>
+        public bool WriteData(object o, string header)
         {
-            switch(type)
+            try
             {
-                case "sms":
-                    break;
-                case "email":
-                    break;
-                case "tweet":
-                    break;
-                default: 
-                    break;
+                string json = JsonConvert.SerializeObject(o, Formatting.Indented);
+                File.WriteAllText($"../../{header}.json", json);
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
             }
         }
     }

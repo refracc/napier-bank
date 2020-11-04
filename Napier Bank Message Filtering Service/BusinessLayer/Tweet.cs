@@ -10,12 +10,13 @@ namespace BusinessLayer
     {
         private Tweet() {}
 
-        public Tweet(string sender, string message)
+        public Tweet(string sender, string header, string message)
         {
             if (Validate(sender, message))
             {
                 Sender = sender;
                 Text = message;
+                Header = header;
             }
         }
 
@@ -26,6 +27,13 @@ namespace BusinessLayer
             string[] data = msg.Split(' ');
 
             return data.Where(s => s.StartsWith("@")).ToList();
+        }
+
+        protected List<string> ExtractHashtags(string msg)
+        {
+            string[] msgs = msg.Split(' ');
+
+            return msgs.Where(s => s.StartsWith("#")).ToList();
         }
     }
 }

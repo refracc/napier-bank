@@ -4,25 +4,17 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="NBMFS" Height="428" Width="788">
-    <Grid Background="#FF81C8EA">
-        <TextBox Name="txtBoxHeader" HorizontalAlignment="Left" Height="23" Margin="9,77,0,0" TextWrapping="Wrap" Text="Header" VerticalAlignment="Top" Width="258"/>
-        <TextBox Name="txtBoxBody" HorizontalAlignment="Left" Height="73" Margin="9,105,0,0" TextWrapping="Wrap" Text="Body" VerticalAlignment="Top" Width="258"/>
-        <Button Content="Process" HorizontalAlignment="Left" Margin="192,183,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
-        <Button x:Name="btnFile" Content="Upload File (.txt or .json)" HorizontalAlignment="Left" Margin="311,85,0,0" VerticalAlignment="Top" Width="152" Click="btnFile_Click"/>
-        <ListBox x:Name="sirList" HorizontalAlignment="Left" Height="122" Margin="517,110,0,0" VerticalAlignment="Top" Width="114"/>
-        <ListBox Name="qList" HorizontalAlignment="Left" Height="122" Margin="646,110,0,0" VerticalAlignment="Top" Width="114"/>
-        <Label Content="SIR List" HorizontalAlignment="Left" Margin="537,85,0,0" VerticalAlignment="Top" Width="76"/>
-        <Label Content="Quarantine List" HorizontalAlignment="Left" Margin="660,87,0,0" VerticalAlignment="Top"/>
-        <ListBox Name="trendList" HorizontalAlignment="Left" Height="122" Margin="517,257,0,0" VerticalAlignment="Top" Width="114"/>
-        <Label Content="Trending List" HorizontalAlignment="Left" Margin="537,232,0,0" VerticalAlignment="Top" Width="94"/>
-        <ListBox Name="mentionList" HorizontalAlignment="Left" Height="122" Margin="646,257,0,0" VerticalAlignment="Top" Width="114"/>
-        <Label Content="Mentions List" HorizontalAlignment="Left" Margin="660,232,0,0" VerticalAlignment="Top" Width="100"/>
-        <TextBox Name="label" HorizontalAlignment="Left" Height="23" Margin="9,232,0,0" TextWrapping="Wrap" Text="ID: " VerticalAlignment="Top" Width="258"/>
-        <TextBox Name="label2" HorizontalAlignment="Left" Height="23" Margin="9,260,0,0" TextWrapping="Wrap" Text="Sender:" VerticalAlignment="Top" Width="258"/>
-        <TextBox Name="label3" HorizontalAlignment="Left" Height="65" Margin="9,288,0,0" TextWrapping="Wrap" Text="Text:" VerticalAlignment="Top" Width="258"/>
-        <ListBox Name="lines" HorizontalAlignment="Left" Height="122" Margin="284,110,0,0" VerticalAlignment="Top" Width="216" MouseDoubleClick="lines_MouseDoubleClick"></ListBox>
-        <Label Content="Napier Bank Message Filtering Service" HorizontalAlignment="Left" Margin="120,21,0,0" VerticalAlignment="Top" Height="42" Width="571" FontFamily="OCR A Extended" FontSize="24"/>
-        <ListBox x:Name="JsonLines" HorizontalAlignment="Left" Height="122" Margin="284,237,0,0" VerticalAlignment="Top" Width="216" MouseDoubleClick="JsonLines_MouseDoubleClick"/>
+        Title="NBMFS" Height="288" Width="602">
+    <Grid>
+        <TextBox x:Name="txtHeader" HorizontalAlignment="Left" Margin="14,16,0,0" Text="Header" TextWrapping="Wrap" VerticalAlignment="Top" Width="211"/>
+        <TextBox x:Name="txtSender" HorizontalAlignment="Left" Margin="14,39,0,0" Text="Sender" TextWrapping="Wrap" VerticalAlignment="Top" Width="211"/>
+        <TextBox x:Name="txtBody" HorizontalAlignment="Left" Margin="14,85,0,0" Text="Body" TextWrapping="Wrap" VerticalAlignment="Top" Width="211" Height="133"/>
+        <Button x:Name="btnProcess" Content="Process Message" HorizontalAlignment="Left" Margin="14,231,0,0" VerticalAlignment="Top" Height="31" Width="211" Click="btnProcess_Click"/>
+        <TextBox x:Name="txtSIR" HorizontalAlignment="Left" Height="100" Margin="342,24,0,0" Text="Serious Incidents" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
+        <TextBox x:Name="txtURL" HorizontalAlignment="Left" Height="100" Margin="342,152,0,0" Text="URL Quarantine" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
+        <TextBox x:Name="txtMentions" HorizontalAlignment="Left" Height="100" Margin="473,24,0,0" Text="Mentions" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
+        <TextBox x:Name="txtHashtags" HorizontalAlignment="Left" Height="100" Margin="473,152,0,0" Text="Trending" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
+        <TextBox x:Name="txtSubject" HorizontalAlignment="Left" Margin="14,62,0,0" Text="Subject" TextWrapping="Wrap" VerticalAlignment="Top" Width="211"/>
     </Grid>
+
 </Window>
