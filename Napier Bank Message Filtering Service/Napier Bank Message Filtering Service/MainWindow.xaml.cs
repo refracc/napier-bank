@@ -26,7 +26,7 @@ namespace Napier_Bank_Message_Filtering_Service
             InitializeComponent();
         }
 
-        ServiceFacade sf = new ServiceFacade();
+        private readonly ServiceFacade sf = new ServiceFacade();
 
         public void btnProcess_Click(object sender, RoutedEventArgs e)
         {
@@ -40,18 +40,20 @@ namespace Napier_Bank_Message_Filtering_Service
                 }
                 else if (txtHeader.Text.StartsWith("E"))
                 {
+                    string msg = txtBody.Text;
                     Email email = sf.ProcessEmail(txtSender.Text, txtHeader.Text, txtSubject.Text, txtBody.Text);
                     txtBody.Text = email.Text;
 
-                    List<string> urls = email.QuarantinedURLs(txtBody.Text);
+                    List<string> urls = email.QuarantinedURLs(msg);
                     
                     foreach (string s in urls)
                     {
-                        txtURL.Text += s + "\n";
+                        lstURLs.Items.Add(s);
                     }
                 }
                 else if (txtHeader.Text.StartsWith("T"))
                 {
+                    string msg = txtBody.Text;
                     Tweet tweet = sf.ProcessTweet(txtSender.Text, txtHeader.Text, txtBody.Text);
                 }
                 else

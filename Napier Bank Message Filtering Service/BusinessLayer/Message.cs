@@ -71,7 +71,7 @@ namespace BusinessLayer
 
                 if (words.ContainsKey(s))
                 {
-                    sb.Append(" <" + words[s] + "> ");
+                    sb.Append("<" + words[s] + "> ");
                 }
             }
             return sb.ToString().Trim();
@@ -79,42 +79,17 @@ namespace BusinessLayer
 
         protected string QuarantineURL(string msg)
         {
-            Regex regex = new Regex(@"(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&\/\/=]*)");
+            string regex = @"(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&\/\/=]*)";
 
-            foreach (string s in regex.Matches(msg))
-            {
-                msg = regex.Replace(s, "<URL Quarantined>");
-            }
-
-            return msg;
+            return Regex.Replace(msg, regex, "<URL Quarantined>");
         }
 
         public List<string> QuarantinedURLs(string msg)
         {
-            //Regex regex = new Regex(@"(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&\/\/=]*)");
-            //MatchCollection match = regex.Matches(msg);
+            Regex regex = new Regex(@"(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&\/\/=]*)");
+            MatchCollection match = regex.Matches(msg);
 
-            //List<object> urls = new List<object>();
-
-            //foreach (Match m in match)
-            //{
-            //    urls.Add(m.Value);
-            //}
-
-            //return urls;
-
-            List<string> urls = new List<string>();
-            string[] data = msg.Split(' ');
-
-            foreach (string s in data)
-            {
-                if (s.StartsWith("http://") || s.StartsWith("https://"))
-                {
-                    urls.Add(s);
-                }
-            }
-
-            return urls;
+            return (from Match m in match select m.Value).ToList();
         }
     }
 }
