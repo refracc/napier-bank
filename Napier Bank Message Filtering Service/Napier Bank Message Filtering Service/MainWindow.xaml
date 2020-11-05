@@ -11,10 +11,10 @@
         <TextBox x:Name="txtSubject" HorizontalAlignment="Left" Margin="14,62,0,0" Text="Subject" TextWrapping="Wrap" VerticalAlignment="Top" Width="211"/>
         <TextBox x:Name="txtBody" HorizontalAlignment="Left" Margin="14,85,0,0" Text="Body" TextWrapping="Wrap" VerticalAlignment="Top" Width="211" Height="133"/>
         <Button x:Name="btnProcess" Content="Process Message" HorizontalAlignment="Left" Margin="14,231,0,0" VerticalAlignment="Top" Height="31" Width="211" Click="btnProcess_Click"/>
-        <TextBox x:Name="txtSIR" HorizontalAlignment="Left" Height="100" Margin="342,24,0,0" Text="Serious Incidents" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
-        <TextBox x:Name="txtMentions" HorizontalAlignment="Left" Height="100" Margin="473,24,0,0" Text="Mentions" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
-        <TextBox x:Name="txtHashtags" HorizontalAlignment="Left" Height="100" Margin="473,152,0,0" Text="Trending" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
-        <ListBox x:Name="lstURLs" HorizontalAlignment="Left" Height="100" Margin="342,152,0,0" VerticalAlignment="Top" Width="100"/>
+        <ListBox x:Name="lstURLs" HorizontalAlignment="Left" Height="100" Margin="342,146,0,0" VerticalAlignment="Top" Width="100"/>
+        <ListBox x:Name="lstMentions" HorizontalAlignment="Left" Height="100" Margin="464,24,0,0" VerticalAlignment="Top" Width="100"/>
+        <ListBox x:Name="lstHash" HorizontalAlignment="Left" Height="100" Margin="464,146,0,0" VerticalAlignment="Top" Width="100"/>
+        <ListBox x:Name="lstSIR" HorizontalAlignment="Left" Height="100" Margin="342,24,0,0" VerticalAlignment="Top" Width="100"/>
     </Grid>
 
 </Window>

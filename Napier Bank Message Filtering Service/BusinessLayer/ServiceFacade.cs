@@ -48,7 +48,7 @@ namespace BusinessLayer
             }
         }
 
-        public SignificantIncidentReport ProcessSIR(string sender, string subject, string header, string text)
+        public SignificantIncidentReport ProcessSIR(string sender, string header, string subject, string text)
         {
             try
             {

@@ -9,6 +9,18 @@ namespace BusinessLayer
     public class Email : Message
     {
         private Email() { }
+        private string _subject;
+
+        public string Subject
+        {
+            get => _subject;
+            set
+            {
+                if (value.Length <= 20 && value.Length > 0)
+                    _subject = value;
+                else throw new ArgumentException("Subject length must be in range 1 - 20 [inclusive]!");
+            }
+        }
 
         public Email(string header, string sender, string subject, string text)
         {

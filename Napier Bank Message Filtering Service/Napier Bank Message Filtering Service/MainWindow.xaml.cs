@@ -41,11 +41,30 @@ namespace Napier_Bank_Message_Filtering_Service
                 else if (txtHeader.Text.StartsWith("E"))
                 {
                     string msg = txtBody.Text;
+                    List<string> urls;
+
+                    if (txtSubject.Text.StartsWith("SIR"))
+                    {
+                        SignificantIncidentReport sir = sf.ProcessSIR(txtSender.Text, txtHeader.Text, txtSubject.Text, txtBody.Text);
+                        txtBody.Text = sir.Text;
+
+                        urls = sir.QuarantinedURLs(msg);
+
+                        lstSIR.Items.Add("Code: " + sir.Code);
+                        lstSIR.Items.Add("Nature: " + sir.Nature);
+
+                        foreach (string s in urls)
+                        {
+                            lstURLs.Items.Add(s);
+                        }
+                        return;
+                    }
+                    
                     Email email = sf.ProcessEmail(txtSender.Text, txtHeader.Text, txtSubject.Text, txtBody.Text);
                     txtBody.Text = email.Text;
 
-                    List<string> urls = email.QuarantinedURLs(msg);
-                    
+                    urls = email.QuarantinedURLs(msg);
+
                     foreach (string s in urls)
                     {
                         lstURLs.Items.Add(s);
@@ -55,6 +74,21 @@ namespace Napier_Bank_Message_Filtering_Service
                 {
                     string msg = txtBody.Text;
                     Tweet tweet = sf.ProcessTweet(txtSender.Text, txtHeader.Text, txtBody.Text);
+                    txtBody.Text = tweet.Text;
+
+                    List<string> mentions = tweet.ExtractMentions(msg);
+                    List<string> hash = tweet.ExtractHashtags(msg);
+
+                    foreach (string s in mentions)
+                    {
+                        lstMentions.Items.Add(s);
+                    }
+
+                    foreach (string s in hash)
+                    {
+                        lstHash.Items.Add(s);
+                    }
+
                 }
                 else
                 {

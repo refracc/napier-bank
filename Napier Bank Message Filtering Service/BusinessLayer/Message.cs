@@ -9,7 +9,6 @@ namespace BusinessLayer
     public abstract class Message
     {
         private string _header;
-        private string _subject;
         private string _sender;
 
         public string Header
@@ -28,17 +27,6 @@ namespace BusinessLayer
             }
         }
 
-        public string Subject
-        {
-            get => _subject;
-            set
-            {
-                if (value.Length <= 20 && value.Length > 0)
-                    _subject = value;
-                else throw new ArgumentException("Subject length must be in range 1 - 20 [inclusive]!");
-            }
-        }
-
         public string Text { get; set; }
 
         public string Sender
@@ -46,17 +34,17 @@ namespace BusinessLayer
             get => _sender;
             set
             {
-                if (Header.StartsWith("S") && (value.StartsWith("+") && value.Length > 6))
-                {
+                 if (Header.StartsWith("E") || Header.StartsWith("T"))
+                 {
                     _sender = value;
-                } else if (Header.StartsWith("E") || Header.StartsWith("T"))
-                {
+                 } else if (Header.StartsWith("S") && (value.StartsWith("+") && value.Length > 6)) 
+                 {
                     _sender = value;
-                }
-                else
-                {
+                 }
+                 else
+                 {
                     throw new ArgumentException("This is an invalid input!");
-                }
+                 }
             }
         }
 

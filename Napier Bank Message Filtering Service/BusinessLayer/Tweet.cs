@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using DataLayer;
 
 namespace BusinessLayer
 {
@@ -10,13 +11,15 @@ namespace BusinessLayer
     {
         private Tweet() {}
 
+        private readonly LoadSingleton _ls = LoadSingleton.Instance;
+
         public Tweet(string sender, string header, string message)
         {
             if (Validate(sender, message))
             {
-                Sender = sender;
-                Text = message;
                 Header = header;
+                Sender = sender;
+                Text = ConvertAbbreviations(message, _ls.GetAbbreviations());
             }
         }
 
@@ -29,7 +32,7 @@ namespace BusinessLayer
             return data.Where(s => s.StartsWith("@")).ToList();
         }
 
-        protected List<string> ExtractHashtags(string msg)
+        public  List<string> ExtractHashtags(string msg)
         {
             string[] msgs = msg.Split(' ');
 
