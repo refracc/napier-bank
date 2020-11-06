@@ -25,12 +25,12 @@ namespace DataLayer
         /// There's also the use of a 'static' and 'readonly' modifier. They're there so you can't modify it and so you can call a pre-made instance of this class
         /// without creating a new instance of this class.
         /// </summary>
-        private static readonly Lazy<SaveSingleton> saveSingleton = new Lazy<SaveSingleton>(() => new SaveSingleton());
+        private static readonly Lazy<SaveSingleton> _saveSingleton = new Lazy<SaveSingleton>(() => new SaveSingleton());
 
         /// <summary>
         /// A static instance of this class which can be referenced without having to create a new reference to this class.
         /// </summary>
-        public static SaveSingleton Instance => saveSingleton.Value;
+        public static SaveSingleton Instance => _saveSingleton.Value;
 
         /// <summary>
         /// Write the contents of a file to a new JSON file.
@@ -48,7 +48,7 @@ namespace DataLayer
             }
             catch (Exception e)
             {
-                return false;
+                throw new Exception(e.Message);
             }
         }
     }

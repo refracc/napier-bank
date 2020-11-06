@@ -1,18 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using BusinessLayer;
 using Microsoft.Win32;
 using Path = System.IO.Path;
@@ -29,27 +18,32 @@ namespace Napier_Bank_Message_Filtering_Service
             InitializeComponent();
         }
 
-        private readonly ServiceFacade sf = new ServiceFacade();
+        private readonly ServiceFacade _sf = new ServiceFacade();
 
+        /// <summary>
+        /// This is what happens when you click the "Process" button.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The event arguments</param>
         public void btnProcess_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                if (txtHeader.Text.StartsWith("S"))
+                if (txtHeader.Text.StartsWith("S")) // Check its an SMS
                 {
-                    SMS sms = sf.ProcessSMS(txtSender.Text, txtHeader.Text, txtBody.Text);
-                    txtBody.Text = sms.Text;
+                    SMS sms = _sf.ProcessSMS(txtSender.Text, txtHeader.Text, txtBody.Text);
+                    txtBody.Text = sms.Text; // Add content to text box
 
                 }
-                else if (txtHeader.Text.StartsWith("E"))
+                else if (txtHeader.Text.StartsWith("E")) // Check it's an email
                 {
-                    string msg = txtBody.Text;
+                    string msg = txtBody.Text; // Initialise msg text.
                     List<string> urls;
 
-                    if (txtSubject.Text.StartsWith("SIR"))
+                    if (txtSubject.Text.StartsWith("SIR")) // Check if it is a SIR
                     {
-                        SignificantIncidentReport sir = sf.ProcessSIR(txtSender.Text, txtHeader.Text, txtSubject.Text, txtBody.Text);
-                        txtBody.Text = sir.Text;
+                        SignificantIncidentReport sir = _sf.ProcessSIR(txtSender.Text, txtHeader.Text, txtSubject.Text, txtBody.Text);
+                        txtBody.Text = sir.Text; 
 
                         urls = sir.QuarantinedURLs(msg);
 
@@ -58,12 +52,14 @@ namespace Napier_Bank_Message_Filtering_Service
 
                         foreach (string s in urls)
                         {
-                            lstURLs.Items.Add(s);
+                            lstURLs.Items.Add(s); // Add quarantined URLs to list box
                         }
                         return;
                     }
+
+                    // Do the same thing, but for a regular email.
                     
-                    Email email = sf.ProcessEmail(txtSender.Text, txtHeader.Text, txtSubject.Text, txtBody.Text);
+                    Email email = _sf.ProcessEmail(txtSender.Text, txtHeader.Text, txtSubject.Text, txtBody.Text);
                     txtBody.Text = email.Text;
 
                     urls = email.QuarantinedURLs(msg);
@@ -73,10 +69,10 @@ namespace Napier_Bank_Message_Filtering_Service
                         lstURLs.Items.Add(s);
                     }
                 }
-                else if (txtHeader.Text.StartsWith("T"))
+                else if (txtHeader.Text.StartsWith("T")) // Check it's a tweet
                 {
                     string msg = txtBody.Text;
-                    Tweet tweet = sf.ProcessTweet(txtSender.Text, txtHeader.Text, txtBody.Text);
+                    Tweet tweet = _sf.ProcessTweet(txtSender.Text, txtHeader.Text, txtBody.Text);
                     txtBody.Text = tweet.Text;
 
                     List<string> mentions = tweet.ExtractMentions(msg);
@@ -84,12 +80,12 @@ namespace Napier_Bank_Message_Filtering_Service
 
                     foreach (string s in mentions)
                     {
-                        lstMentions.Items.Add(s);
+                        lstMentions.Items.Add(s); // Put mentions in mention box
                     }
 
                     foreach (string s in hash)
                     {
-                        lstHash.Items.Add(s);
+                        lstHash.Items.Add(s); // Put hashtags in hash box
                     }
 
                 }
@@ -97,7 +93,7 @@ namespace Napier_Bank_Message_Filtering_Service
                 {
                     MessageBox.Show(
                         "The header field starts with an invalid character. Please make this S, E or T followed by 9 characters.",
-                        "Whoops!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                        "Whoops!", MessageBoxButton.OK, MessageBoxImage.Exclamation); // Otherwise return error box
                 }
             }
             catch (Exception ex)
@@ -106,11 +102,16 @@ namespace Napier_Bank_Message_Filtering_Service
             }
         }
 
-        private void btnImport_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// What happens when you click "Import" button.
+        /// </summary>
+        /// <param name="sender">The sender</param>
+        /// <param name="e">The event arguments.</param>
+        public void btnImport_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                OpenFileDialog ofd = new OpenFileDialog();
+                OpenFileDialog ofd = new OpenFileDialog(); // Open GUI
                 if (ofd.ShowDialog() == true)
                 {
                     string extension = Path.GetExtension(ofd.FileName);
@@ -126,16 +127,16 @@ namespace Napier_Bank_Message_Filtering_Service
                             txtHeader.Text = line[0];
                             txtSender.Text = line[1];
                             txtSubject.Text = line[2];
-                            txtBody.Text = line[3];
+                            txtBody.Text = line[3]; // Assume this data is correct
 
-                            btnProcess_Click(sender, e);
+                            btnProcess_Click(sender, e); // Activate process button using the same arguments as this function.
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "An error has occurred...", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.Message, "An error has occurred...", MessageBoxButton.OK, MessageBoxImage.Error); // Otherwise return error message
             }
         }
     }
