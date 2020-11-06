@@ -11,6 +11,7 @@ namespace BusinessLayer
     public class SignificantIncidentReport : Email
     {
         private string _nature;
+        private string _code;
 
         private readonly List<string> _incidents = new List<string>
         {
@@ -30,7 +31,17 @@ namespace BusinessLayer
         /// <summary>
         /// The report's sort code.
         /// </summary>
-        public string Code { get; internal set; }
+        public string Code
+        {
+            get => _code;
+            set
+            {
+                if (value.Length == 8)
+                {
+                    _code = value;
+                } else throw new ArgumentException("Code is of invalid length!");
+            }
+        }
 
         /// <summary>
         /// The nature of the incident.
@@ -58,6 +69,15 @@ namespace BusinessLayer
             string[] data = body.Split(' ');
             Code = data[2].Trim(); // Assume
             Nature = data[6].Trim(); // Assume
+
+            if (subject.StartsWith("SIR"))
+            {
+                Subject = subject;
+            }
+            else
+            {
+                throw new ArgumentException("Subject is invalid.");
+            }
         }
     }
 }

@@ -46,7 +46,46 @@ namespace BusinessLayerTest
             Assert.IsTrue(_e.Text.Length <= 1024);
         }
 
+        [TestMethod]
+        public void TestHeaderErrors()
+        {
+            try
+            {
+                Email email = new Email(_e.Header, _e.Sender, _e.Subject, _e.Text);
 
+                Assert.ThrowsException<ArgumentException>(() => email = new Email("_e.Header", _e.Sender, _e.Subject, _e.Text));
+            }
+            catch (ArgumentException e)
+            {
+                Assert.Fail("The ArgumentException was not thrown.\n\n" + e.Message);
+            }
+        }
 
+        [TestMethod]
+        public void TestSenderErrors()
+        {
+            Email email = new Email(_e.Header, _e.Sender, _e.Subject, _e.Text);
+            Assert.ThrowsException<ArgumentException>(() => email = new Email(_e.Header, "_e.Sender", _e.Subject, _e.Text));
+        }
+
+        [TestMethod]
+        public void TestSubjectErrors()
+        {
+            Email email = new Email(_e.Header, _e.Sender, _e.Subject, _e.Text);
+            Assert.ThrowsException<ArgumentException>(() => email = new Email(_e.Header, _e.Sender, "this is longer than 20 characters", _e.Text));
+        }
+
+        [TestMethod]
+        public void TestTextErrors()
+        {
+            string msg = "a";
+            for (int i = 0; i < 729; i++)
+            {
+                msg += "aaaaaaaa";
+            }
+
+            Email email = new Email(_e.Header, _e.Sender, _e.Subject, _e.Text);
+            Assert.ThrowsException<ArgumentException>(() => email = new Email(_e.Header, _e.Sender, _e.Subject, msg));
+        }
     }
 }

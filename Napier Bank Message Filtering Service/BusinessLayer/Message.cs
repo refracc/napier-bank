@@ -7,7 +7,9 @@ using System.Text.RegularExpressions;
 namespace BusinessLayer
 {
     /// <summary>
-    /// This class is about the abstract Message type.
+    /// This class is about the abstract data type Message.
+    /// Since this is an abstract class, you cannot create an instance of it.
+    /// This also prevents me testing on this class :)
     /// </summary>
     public abstract class Message
     {

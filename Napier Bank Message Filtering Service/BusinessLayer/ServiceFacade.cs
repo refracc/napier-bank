@@ -90,7 +90,7 @@ namespace BusinessLayer
             try
             {
                 SignificantIncidentReport sir = new SignificantIncidentReport(sender, subject, header, text);
-                Save(sir, subject);
+                Save(sir, header);
                 return sir;
             }
             catch (Exception e)
