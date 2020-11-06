@@ -48,7 +48,7 @@ namespace BusinessLayer
             }
         }
 
-        protected string ConvertAbbreviations(string msg, Dictionary<string, string> words)
+        public string ConvertAbbreviations(string msg, Dictionary<string, string> words)
         {
             string[] msgs = msg.Split(' ');
             StringBuilder sb = new StringBuilder();
@@ -65,7 +65,7 @@ namespace BusinessLayer
             return sb.ToString().Trim();
         }
 
-        protected string QuarantineURL(string msg)
+        public string QuarantineURL(string msg)
         {
             string regex = @"(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&\/\/=]*)";
 

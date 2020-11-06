@@ -62,7 +62,7 @@ namespace BusinessLayer
             }
         }
 
-        private bool Save(Message message, string header)
+        public bool Save(Message message, string header)
         {
             try
             {

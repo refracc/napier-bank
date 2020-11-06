@@ -19,7 +19,7 @@
         <Label x:Name="lblTrending" Content="Trending (#)" HorizontalAlignment="Left" Margin="702,246,0,0" VerticalAlignment="Top"/>
         <Label x:Name="lblMentions" Content="Mentions (@)" HorizontalAlignment="Left" Margin="698,-1,0,0" VerticalAlignment="Top"/>
         <Label x:Name="lblURLs" Content="Quarantined URLs" HorizontalAlignment="Left" Margin="406,246,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="btnImport" Content="Import File" HorizontalAlignment="Left" Margin="243,0,0,0" VerticalAlignment="Center" Height="58" Width="71"/>
+        <Button x:Name="btnImport" Content="Import File" HorizontalAlignment="Left" Margin="243,0,0,0" VerticalAlignment="Center" Height="58" Width="71" Click="btnImport_Click"/>
     </Grid>
 
 </Window>

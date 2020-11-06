@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BusinessLayer;
+using Microsoft.Win32;
+using Path = System.IO.Path;
 
 namespace Napier_Bank_Message_Filtering_Service
 {
@@ -100,6 +103,39 @@ namespace Napier_Bank_Message_Filtering_Service
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnImport_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                OpenFileDialog ofd = new OpenFileDialog();
+                if (ofd.ShowDialog() == true)
+                {
+                    string extension = Path.GetExtension(ofd.FileName);
+
+                    if (extension.Equals(".csv"))
+                    {
+                        string[] data = File.ReadAllLines(ofd.FileName);
+
+                        for (int i = 1; i < data.Length; i++)
+                        {
+                            string[] line = data[i].Split(",");
+
+                            txtHeader.Text = line[0];
+                            txtSender.Text = line[1];
+                            txtSubject.Text = line[2];
+                            txtBody.Text = line[3];
+
+                            btnProcess_Click(sender, e);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "An error has occurred...", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }
