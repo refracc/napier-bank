@@ -14,6 +14,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLayerTest", "DataLayerT
 		{70FDAD39-EAB7-42D4-B691-0A39710975E5} = {70FDAD39-EAB7-42D4-B691-0A39710975E5}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLayerTest", "BusinessLayerTest\BusinessLayerTest.csproj", "{C8FBECF5-70D4-4F88-940C-C569E8E607AE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,6 +38,10 @@ Global
 		{001B541A-7DF5-4B3B-892A-5F50D206C4E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{001B541A-7DF5-4B3B-892A-5F50D206C4E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{001B541A-7DF5-4B3B-892A-5F50D206C4E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8FBECF5-70D4-4F88-940C-C569E8E607AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8FBECF5-70D4-4F88-940C-C569E8E607AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8FBECF5-70D4-4F88-940C-C569E8E607AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8FBECF5-70D4-4F88-940C-C569E8E607AE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

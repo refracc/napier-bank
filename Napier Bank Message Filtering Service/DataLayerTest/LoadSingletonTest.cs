@@ -22,7 +22,7 @@ namespace DataLayerTest
         {
             Dictionary<string, string> abbreviations = LoadSingleton.Instance.GetAbbreviations();
             Assert.IsNotNull(abbreviations);
-            Assert.IsTrue(abbreviations.Count() > 0);
+            Assert.IsTrue(abbreviations.Any());
         }
     }
 }

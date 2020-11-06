@@ -58,7 +58,7 @@ namespace BusinessLayer
         /// <param name="subject">The email subject</param>
         /// <param name="text">The email text</param>
         /// <returns></returns>
-        private bool Validate(string sender, string subject, string text) =>
+        public bool Validate(string sender, string subject, string text) =>
             (Regex.IsMatch(sender, @"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$")) // regex for email message
             && (subject.Length <= 20)
             && (text.Length <= 1028);
