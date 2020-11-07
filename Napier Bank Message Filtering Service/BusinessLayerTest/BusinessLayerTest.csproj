@@ -53,6 +53,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceFacadeTest.cs" />
     <Compile Include="SignificantIncidentReportTest.cs" />
+    <Compile Include="SMSTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
