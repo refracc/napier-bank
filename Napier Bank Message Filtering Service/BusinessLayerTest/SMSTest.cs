@@ -1,5 +1,6 @@
 ﻿using System;
 using BusinessLayer;
+using DataLayer;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace BusinessLayerTest
@@ -70,5 +71,16 @@ namespace BusinessLayerTest
             Assert.ThrowsException<ArgumentException>(() => sms1 = new SMS("sms.Sender", sms.Header, sms.Text));
         }
 
+        [TestMethod]
+        public void TestConversion()
+        {
+            LoadSingleton _ls = LoadSingleton.Instance;
+            string word = "ROTFL";
+
+            sms.Text = word;
+            string convert = sms.ConvertAbbreviations(word, _ls.GetAbbreviations());
+
+            Assert.AreEqual(convert, word + " <" + _ls.GetAbbreviations()[word] + ">");
+        }
     }
 }

@@ -54,6 +54,7 @@
     <Compile Include="ServiceFacadeTest.cs" />
     <Compile Include="SignificantIncidentReportTest.cs" />
     <Compile Include="SMSTest.cs" />
+    <Compile Include="TweetTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -62,6 +63,10 @@
     <ProjectReference Include="..\BusinessLayer\BusinessLayer.csproj">
       <Project>{4c09bbff-d173-4d4f-8300-eea4aeb342cc}</Project>
       <Name>BusinessLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataLayer\DataLayer.csproj">
+      <Project>{70fdad39-eab7-42d4-b691-0a39710975e5}</Project>
+      <Name>DataLayer</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

@@ -30,6 +30,10 @@ namespace BusinessLayer
                 Sender = sender;
                 Text = ConvertAbbreviations(message, _ls.GetAbbreviations());
             }
+            else
+            {
+                throw new ArgumentException("This tweet contains invalid data!");
+            }
         }
 
         /// <summary>
