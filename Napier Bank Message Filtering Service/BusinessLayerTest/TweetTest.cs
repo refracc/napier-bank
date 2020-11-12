@@ -91,7 +91,7 @@ namespace BusinessLayerTest
             Tweet t = _tweet;
             string msg = "";
 
-            for (int i = 0; i < 141; i++) msg += "a";
+            for (int i = 0; i < 141; i++) msg += "aa";
 
             Assert.ThrowsException<ArgumentException>(() => t = new Tweet(_tweet.Sender, _tweet.Header, msg));
         }

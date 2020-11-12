@@ -8,7 +8,7 @@ namespace BusinessLayerTest
     [TestClass]
     public class SignificantIncidentReportTest
     {
-        SignificantIncidentReport _sir = new SignificantIncidentReport("40345422@live.napier.ac.uk", "SIR - 26/11/2008", "E321467812", "Sort Code: 99-12-34 Nature of Incident: Theft blah blah blah https://www.google.com/jeff_bezos");
+        private SignificantIncidentReport _sir = new SignificantIncidentReport("40345422@live.napier.ac.uk", "SIR - 26/11/2008", "E321467812", "Sort Code: 99-12-34 Nature of Incident: Theft blah blah blah https://www.google.com/jeff_bezos");
 
         [TestMethod]
         public void TestValidate()
